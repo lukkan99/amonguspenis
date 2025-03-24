@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among us Penis</title>
+    <style>
+        #loading {
+            text-align: center;
+            padding: 50px;
+        }
+        #blocked {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Checking location...</div>
+    <div id="blocked">replace you nation leadership with non warcriminals and get fuck out ukraine. free ukriane, death to putin.</div>
+    <div id="content" style="display: none;">
+        <!-- Your HTML5 content goes here -->
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among us Penis</title>
+    <style>
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mainCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('mainCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // ASCII art template
+        const asciiArt = [
+"        ⣠⣤⣤⣤⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⠀⢰⡿⠋⠁⠀⠀⠈⠉⠙⠻⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⢀⣿⠇⠀⢀⣴⣶⡾⠿⠿⠿⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⣀⣀⣸⡿⠀⠀⢸⣿⣇⠀⠀⠀⠀⠀⠀⠙⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⣾⡟⠛⣿⡇⠀⠀⢸⣿⣿⣷⣤⣤⣤⣤⣶⣶⣿⠇⠀⠀⠀⠀⠀⠀⠀⣀⠀⠀",
+"⢀⣿⠀⢀⣿⡇⠀⠀⠀⠻⢿⣿⣿⣿⣿⣿⠿⣿⡏⠀⠀⠀⠀⢴⣶⣶⣿⣿⣿⣆",
+"⢸⣿⠀⢸⣿⡇⠀⠀⠀⠀⠀⠈⠉⠁⠀⠀⠀⣿⡇⣀⣠⣴⣾⣮⣝⠿⠿⠿⣻⡟",
+"⢸⣿⠀⠘⣿⡇⠀⠀⠀⠀⠀⠀⠀⣠⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠉⠀",
+"⠸⣿⠀⠀⣿⡇⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠉⠀⠀⠀⠀",
+"⠀⠻⣷⣶⣿⣇⠀⠀⠀⢠⣼⣿⣿⣿⣿⣿⣿⣿⣛⣛⣻⠉⠁⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⢸⣿⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⢸⣿⣀⣀⣀⣼⡿⢿⣿⣿⣿⣿⣿⡿⣿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+"⠀⠀⠀⠀⠀⠙⠛⠛⠛⠋⠁⠀⠙⠻⠿⠟⠋⠑⠛⠋⠀"
+        ];
+
+        // Drawing settings
+        const charWidth = 10;
+        const charHeight = 15;
+        let drawSpeed = 50; // Initial speed in ms
+        const minSpeed = 5;  // Fastest speed
+        const artWidth = asciiArt[0].length * charWidth;
+        const artHeight = asciiArt.length * charHeight;
+
+        // Store active drawings
+        const drawings = [];
+
+        function randomPosition() {
+            return {
+                x: Math.floor(Math.random() * (canvas.width - artWidth)),
+                y: Math.floor(Math.random() * (canvas.height - artHeight))
+            };
+        }
+
+        function drawAsciiArt(x, y, callback) {
+            let line = 0;
+            let char = 0;
+
+            function drawNext() {
+                if (line < asciiArt.length) {
+                    const currentLine = asciiArt[line];
+                    if (char < currentLine.length) {
+                        ctx.font = '14px monospace';
+                        ctx.fillStyle = '#000';
+                        ctx.fillText(currentLine[char], x + char * charWidth, y + (line + 1) * charHeight);
+                        char++;
+                        setTimeout(drawNext, drawSpeed);
+                    } else {
+                        char = 0;
+                        line++;
+                        setTimeout(drawNext, drawSpeed);
+                    }
+                } else if (callback) {
+                    callback();
+                }
+            }
+            drawNext();
+        }
+
+        function addNewDrawing() {
+            const pos = randomPosition();
+            drawings.push({ x: pos.x, y: pos.y });
+            drawAsciiArt(pos.x, pos.y, () => {
+                // Speed up and add another when one finishes
+                drawSpeed = Math.max(minSpeed, drawSpeed * 0.9); // Increase speed by 10%
+                if (drawings.length * (artWidth * artHeight) < canvas.width * canvas.height * 0.8) {
+                    addNewDrawing(); // Add more until ~80% of screen is covered
+                }
+            });
+        }
+
+        // Start with one drawing
+        addNewDrawing();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
+        <!-- Add more HTML5 content as needed -->
+    </div>
+
+    <script>
+        async function checkLocation() {
+            try {
+                // Using ipapi.co for geolocation (free tier available)
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                
+                // Check if country code is Russia (RU)
+                if (data.country_code === 'RU') {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('blocked').style.display = 'block';
+                    document.getElementById('content').style.display = 'none';
+                } else {
+                    // If not Russia, show the content
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('blocked').style.display = 'none';
+                    document.getElementById('content').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error checking location:', error);
+                // Fallback: show content if location check fails
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            }
+        }
+
+        // Run the check when the page loads
+        window.onload = checkLocation;
+    </script>
+</body>
+</html>
+​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
